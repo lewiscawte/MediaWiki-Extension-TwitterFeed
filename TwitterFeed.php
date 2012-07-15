@@ -27,17 +27,31 @@
  * -----------------------------------------------------------------------
  */
  
-
+# Confirm MW environment
+if (defined('MEDIAWIKI')) {
+ 
+# Credits
 $wgExtensionCredits['parserhook'][] = array(
-    'name'=>'TwitterFeed',
-    'author'=> array( 'Baptiste \'BapNesS\' Carlier', 'Lewis Cawte' ),
-    'url'=>'http://twitter-feed.sourceforge.net',
-    'description-msg'=> 'twitterfeed-desc',
-    'version'=>'2.0'
+    'name' => 'TwitterFeed',
+    'author' => array('Baptiste \'BapNesS\' Carlier', 'Lewis Cawte'),
+    'url' => 'https://www.mediawiki.org/wiki/Extenion:TwitterFeed',
+    'descriptionmsg' => 'twitterfeed-desc',
+    'version' => '1.2'
 );
 
 # Register Extension initializer
 $wgExtensionFunctions[] = "wfTwitterFeedExtension";
+
+// Internationalization file and autoloadable classes
+$dir = dirname( __FILE__ ) . '/';
+$wgExtensionMessagesFiles['TwitterFeed'] = $dir . 'TwitterFeed.i18n.php';
+//$wgAutoloadClasses['TwitterFeed'] = $dir . 'TwitterFeed.classz.php';
+ 
+# Extension initializer
+function wfTwitterFeedExtension() {
+    global $wgParser, $wgMessageCache;
+    $wgParser->setHook("twitterfeed", "renderTwitterFeed");
+}
  
 /**
  * Tools
@@ -82,14 +96,14 @@ class Tweets {
 function renderTwitterFeed( $input, $params, &$parser ) {
 
     # Check for parameters and ensure it has a valid value
-    $id = htmlspecialchars($params['id']);
+    $username = htmlspecialchars($params['id']);
     $nb = htmlspecialchars($params['nb']);
-    if ($id==null || preg_match('%[^A-Za-z0-9_:/.]%',$id)) {
-        return '<div class="errorbox">'.wfMsgForContent('twitterfeed-bad-id', $id).'</div>';
+    if ($username==null || preg_match('%[^A-Za-z0-9_:/.]%',$ussername)) {
+        return '<div class="errorbox">'.wfMsgForContent('twitterfeed-bad-id', $username).'</div>';
     }
 
     # Build URL and output embedded flash object
-	$xml = "http://twitter.com/statuses/user_timeline/".$id.".rss";
+	$xml = "http://twitter.com/statuses/user_timeline/".$username.".rss";
 	$xml = simplexml_load_file($xml);
 	
 	$title = ucfirst(substr($xml->channel->title, 10));
@@ -129,3 +143,6 @@ function renderTwitterFeed( $input, $params, &$parser ) {
 	
 	return $toreturn;
 }
+ 
+}
+
