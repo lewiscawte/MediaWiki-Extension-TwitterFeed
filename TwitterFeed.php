@@ -99,7 +99,7 @@ function renderTwitterFeed( $input, $params, &$parser ) {
     $username = htmlspecialchars($params['id']);
     $nb = htmlspecialchars($params['nb']);
     if ($username==null || preg_match('%[^A-Za-z0-9_:/.]%',$ussername)) {
-        return '<div class="errorbox">'.wfMsgForContent('twitterfeed-bad-id', $username).'</div>';
+        return '<div class="errorbox">'.wfMsgForContent('twitterfeed-badid', $username).'</div>';
     }
 
     # Build URL and output embedded flash object

@@ -1,6 +1,6 @@
 <?php
 /**
- * Internationalization file for RSS extension.
+ * Internationalization file for TwitterFeed extension.
  *
  * @file
  * @ingroup Extensions
