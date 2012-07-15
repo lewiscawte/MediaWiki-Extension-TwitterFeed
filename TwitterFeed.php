@@ -32,19 +32,12 @@ $wgExtensionCredits['parserhook'][] = array(
     'name'=>'TwitterFeed',
     'author'=> array( 'Baptiste \'BapNesS\' Carlier', 'Lewis Cawte' ),
     'url'=>'http://twitter-feed.sourceforge.net',
-    'description'=>'Display lignes of the chosen public Twitter into a page.',
+    'description-msg'=> 'twitterfeed-desc',
     'version'=>'2.0'
 );
 
 # Register Extension initializer
 $wgExtensionFunctions[] = "wfTwitterFeedExtension";
- 
-# Extension initializer
-function wfTwitterFeedExtension() {
-    global $wgParser, $wgMessageCache;
-    $wgParser->setHook("twitterfeed", "renderTwitterFeed");
-    $wgMessageCache->addMessage('twitterfeed-bad-id', 'Invalid or protected Twitter RSS supplied: [$1]');
-}
  
 /**
  * Tools
