@@ -1,40 +1,10 @@
-<?php //{{MediaWikiExtension}}<source lang="php">
+<?php
 /*
  * TwitterFeed.php - Display lignes of the chosen public Twitter into a page.
  * @author Baptiste 'BapNesS' Carlier
  * @version 1.1 18th Sep 2009
  * @copyright Copyright (C) 2009 Baptiste 'BapNesS' Carlier
  * @license The MIT License - http://www.opensource.org/licenses/mit-license.php 
- * -----------------------------------------------------------------------
- * Description:
- *     This is a MediaWiki extension which adds an additional tag, <twitterfeed>, for displaying
- *     the last tweets into wiki articles.
- * Requirements:
- *     MediaWiki 1.6.x, 1.8.x, 1.9.x or higher
- *     PHP 5.x or higher
- * Installation:
- *     1. Drop this script (TwitterFeed.php) in $IP/extensions
- *         Note: $IP is your MediaWiki install dir.
- *     2. Enable the extension by adding this line to your LocalSettings.php:
- *            require_once('extensions/TwitterFeed.php');
- *     3. Make sure that these php5 variables are activated:
- *            allow_url_include = On
- *            allow_url_fopen = On
- * Usage:
- *     Once installed, you may utilize TwitterFeed by placing the <twitterfeed> tag in an
- *     article's text:
- *         <twitterfeed id="27030648"></twitterfeed>
- *     or
- *         <twitterfeed nb="3" id="27030648"></twitterfeed>
- * Where id is the session user id. To get it :
- *     1. Go to the Twitter page:
- *         Example:  http://twitter.com/winkinpark
- *     2. Copy the RSS Feed url:
- *         Example:  http://twitter.com/statuses/user_timeline/76944488.rss
- *     3. And finally get the ID :
- *         Example:  76944488
- * -----------------------------------------------------------------------
- * Copyright (c) 2009 Baptiste 'BapNesS' Carlier
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy 
  * of this software and associated documentation files (the "Software"), to deal 
@@ -57,16 +27,13 @@
  * -----------------------------------------------------------------------
  */
  
-# Confirm MW environment
-if (defined('MEDIAWIKI')) {
- 
-# Credits
+
 $wgExtensionCredits['parserhook'][] = array(
     'name'=>'TwitterFeed',
-    'author'=>'Baptiste \'BapNesS\' Carlier (baptiste&lt;at&gt;nesscorp.fr)',
+    'author'=> array( 'Baptiste \'BapNesS\' Carlier', 'Lewis Cawte' ),
     'url'=>'http://twitter-feed.sourceforge.net',
     'description'=>'Display lignes of the chosen public Twitter into a page.',
-    'version'=>'1.1'
+    'version'=>'2.0'
 );
 
 # Register Extension initializer
@@ -169,7 +136,3 @@ function renderTwitterFeed( $input, $params, &$parser ) {
 	
 	return $toreturn;
 }
- 
-} # Closing MW Environment wrapper
-//</source>
-?>
