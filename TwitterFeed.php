@@ -28,8 +28,10 @@
  */
  
 # Confirm MW environment
-if (defined('MEDIAWIKI')) {
- 
+if (defined('MEDIAWIKI') ) {
+        die();
+}
+
 # Credits
 $wgExtensionCredits['parserhook'][] = array(
     'name' => 'TwitterFeed',
