@@ -48,3 +48,8 @@ $wgExtensionFunctions[] = "wfTwitterFeedExtension";
 $dir = dirname( __FILE__ ) . '/';
 $wgExtensionMessagesFiles['TwitterFeed'] = $dir . 'TwitterFeed.i18n.php';
 $wgAutoloadClasses['Tweet'] = $dir . 'TwitterFeed.class.php';
+
+function wfTwitterFeedExtension() {
+	global $wgParser, $wgMessageCache;
+    $wgParser->setHook("twitterfeed", "renderTwitterFeed");
+}
